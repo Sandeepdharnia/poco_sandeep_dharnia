@@ -160,3 +160,33 @@ function count_days(date) {
   }
   return console.log(total_days);
 }
+
+
+let merge_sort = (arr) => { 
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const mid = Math.floor(arr.length / 2);
+    const left = merge_sort(arr.slice(0, mid));
+    const right = merge_sort(arr.slice(mid+1, arr.length));
+    return merge(left, right);
+}
+
+let merge = (left, right) => {
+    let result = [];
+    let left_index = 0;
+    let right_index = 0;
+    while(left_index <left.length && right_index < right.length) {
+        if (left[left_index] < right[right_index]) {
+            result.push(left[left_index]);
+            left_index++;
+        } else {
+            result.push(right[right_index]);
+            right_index++;
+        }
+    }
+    result = result.concat(left.slice(left_index));
+    result = result.concat(right.slice(right_index));
+    return result;
+}
+//console.log(merge_sort([5, 3, 8, 1, 2, 7, 4, 6]));
